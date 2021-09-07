@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/22 13:13:27 by sehee             #+#    #+#             */
-/*   Updated: 2021/08/18 19:45:38 by sehee            ###   ########seoul.kr  */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "pipex.h"
 
 extern char **environ;
@@ -23,42 +11,68 @@ void	error_checker(char *str, int return_value, int error_value)
 	}
 }
 
-void	fds_arranger(int )
-
-int		main(int argc, char **argv, char **envp)
+int		main(int argc, char **argv)
 {
-	t_variables	info;
+	t_storage info;
+	int gc1, gc2, status2;
+	char *array1[] = {"cat" , (char*)0};
+	char *array2[] = {"grep", "mini", (char*)0};
 
 	argument_checker(&info, argc, argv);
-	error_checker("pipe() has failed.\n", pipe(info.pipe_fds), -1);
 	info.pid = fork();
 	error_checker("fork() has failed.\n", info.pid, -1);
-	if (info.pid == 0)		//child process
+	if (info.pid == 0)
 	{
-		printf("I'm child process. My pid is %d\n", (int)info.pid);
+		printf("\t나는 자식 프로세스의 PID는 %d\n", getpid());
+		error_checker("pipe() has failed.\n", pipe(info.pipe_fds), -1);
+		//손자 프로세스1 생성
+		gc1 = fork();
+		error_checker("fork() has failed.\n", info.pid, -1);
+		if (gc1 == 0)
+		{
+			printf("\t나는 손자1 프로세스\n");
+			close(info.pipe_fds[PIPE_READ]);
+
+			dup2(info.infile_fd, STD_INPUT);
+			close(info.infile_fd);
+
+			dup2(info.pipe_fds[PIPE_WRITE], STD_OUTPUT);
+			close(info.pipe_fds[PIPE_WRITE]);
+
+			execve("/bin/cat", array1, environ);
+			perror("1st execve() has failed.\n");
+			exit(EXIT_FAILURE);
+		}
+		//손자 프로세스2 생성
+		gc2 = fork();
+		error_checker("fork() has failed.\n", info.pid, -1);
+		if (gc2 == 0)
+		{
+			printf("\t나는 손자2 프로세스\n");
+			close(info.pipe_fds[PIPE_WRITE]);
+
+			dup2(info.pipe_fds[PIPE_READ], STD_INPUT);
+			close(info.pipe_fds[PIPE_READ]);
+
+			dup2(info.outfile_fd, STD_OUTPUT);
+ 			close(info.outfile_fd);
+			
+			execve("/usr/bin/grep", array2, environ);
+			perror("2nd execve() has failed.\n");
+			exit(EXIT_FAILURE);
+		}
+		//자식 프로세스에서 파이프닫기
 		close(info.pipe_fds[PIPE_READ]);
-		dup2(info.infile_fd, STD_INPUT);
-		close(info.infile_fd);
-		dup2(info.pipe_fds[PIPE_WRITE], STD_OUTPUT);
-		close(info.pipe_fds[PIPE_WRITE]);			//error처리: dup2, close, execve
-		execve(info.cmd1_arg[0], info.cmd1_arg, envp);
-		perror("If you see this, execve() has failed.");
+		close(info.pipe_fds[PIPE_WRITE]);
+		//자식 프로세스에서 wait로 두 손자 프로세스 기다리기
+		while (wait(&status2) != -1);
+		printf("\t자식 프로세스 끝\n");
 	}
-	else					//parent process
+	else
 	{
-		printf("I'm parent process. I wait for my child %d.\n", (int)info.pid);
-		waitpid(info.pid, &info.status, 0);
-		if (WIFEXITED(info.status))
-			printf("Parent successfully ends with its child.\n");
-		else
-			printf("Parent has failed to wait its child.\n");
-		close(info.pipe_fds[PIPE_WRITE]);	
-		dup2(info.outfile_fd, STD_OUTPUT);
-		close(info.outfile_fd);
-		dup2(info.pipe_fds[PIPE_READ], STD_INPUT);
-		close(info.pipe_fds[PIPE_READ]);
-		execve(info.cmd2_arg[0], info.cmd2_arg, envp);
-		perror("execve() has failed.\n");
+		printf("\t나는 부모 프로세스이고 PID는 %d 이고 내 자식 프로세스의 PID는 %d\n", getpid(), info.pid);
+		wait(&info.status);
+		printf("\t부모프로세스 끝\n");
 	}
 	return (0);
 }

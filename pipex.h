@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 15:52:34 by sehee             #+#    #+#             */
-/*   Updated: 2021/08/18 11:57:58 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/07 10:57:42 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include <stdlib.h>		//exit
 # include <fcntl.h>			//open
 
-typedef struct	s_variables
+typedef struct	s_storage
 {
 	char	*infile_name;
 	char	*outfile_name;
@@ -40,7 +40,7 @@ typedef struct	s_variables
 	int		pipe_fds[2];
 	pid_t	pid;
 	int		status;
-}				t_variables;
+}				t_storage;
 
 typedef struct	s_chunk_info
 {
@@ -51,8 +51,8 @@ typedef struct	s_chunk_info
 
 char	**ft_split_cmd(char *str);
 void	*ft_memset(void *b, int c, size_t len);
-void	outfile_checker(char *outfile, t_variables *arg_arr);
-void	file_checker(char *infile, char *outfile, t_variables *arg_arr);
-void	argument_checker(t_variables *arg_arr, int argc, char **argv);
+void	outfile_checker(char *outfile, t_storage *arg_arr);
+void	file_checker(char *infile, char *outfile, t_storage *arg_arr);
+void	argument_checker(t_storage *arg_arr, int argc, char **argv);
 
 #endif
