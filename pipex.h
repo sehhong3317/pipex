@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/22 15:52:34 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/07 10:57:42 by sehhong          ###   ########.fr       */
+/*   Created: 2021/09/09 13:29:08 by sehhong           #+#    #+#             */
+/*   Updated: 2021/09/09 15:32:47 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 # include <sys/wait.h>		//waitpid
 # include <stdlib.h>		//exit
 # include <fcntl.h>			//open
+# include <errno.h>
+# include <string.h>
+# include <sys/errno.h>
 
 typedef struct	s_storage
 {
@@ -35,11 +38,9 @@ typedef struct	s_storage
 	char	*outfile_name;
 	char	**cmd1_arg;
 	char	**cmd2_arg;
-	int		infile_fd;
-	int		outfile_fd;
 	int		pipe_fds[2];
-	pid_t	pid;
-	int		status;
+	pid_t	pids[3];
+	int		statuses[2];
 }				t_storage;
 
 typedef struct	s_chunk_info
@@ -51,8 +52,14 @@ typedef struct	s_chunk_info
 
 char	**ft_split_cmd(char *str);
 void	*ft_memset(void *b, int c, size_t len);
-void	outfile_checker(char *outfile, t_storage *arg_arr);
-void	file_checker(char *infile, char *outfile, t_storage *arg_arr);
-void	argument_checker(t_storage *arg_arr, int argc, char **argv);
+
+void	arg_checker(t_storage *arg_arr, int argc, char **argv);
+
+void	error_checker(char *str, int return_value);
+
+void	fds_redirector_in_child1(t_storage *info);
+void	fds_redirector_in_child2(t_storage *info);
+void	cmd1_forker(t_storage *info, char **arr, char **environ);
+void	cmd2_forker(t_storage *info, char **arr, char **environ);
 
 #endif
