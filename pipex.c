@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 16:57:47 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/09 16:01:22 by sehhong          ###   ########.fr       */
+/*   Updated: 2021/09/10 09:41:26 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-extern char **environ;
 
 int		main(int argc, char **argv)
 {

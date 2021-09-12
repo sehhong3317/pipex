@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:29:08 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/09 15:32:47 by sehhong          ###   ########.fr       */
+/*   Updated: 2021/09/10 11:08:37 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ typedef struct	s_chunk_info
 	int	quote_flag;
 }				t_chunk_info;
 
+extern char **environ;
+
 char	**ft_split_cmd(char *str);
-void	*ft_memset(void *b, int c, size_t len);
 
 void	arg_checker(t_storage *arg_arr, int argc, char **argv);
 
@@ -61,5 +62,11 @@ void	fds_redirector_in_child1(t_storage *info);
 void	fds_redirector_in_child2(t_storage *info);
 void	cmd1_forker(t_storage *info, char **arr, char **environ);
 void	cmd2_forker(t_storage *info, char **arr, char **environ);
+
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	**ft_split(char *str, char c);
+char		*ft_strjoin(char const *s1, char const *s2);
+size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *s1);
 
 #endif
