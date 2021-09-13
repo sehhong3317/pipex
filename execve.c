@@ -1,27 +1,22 @@
 #include "pipex.h"
 
-char	**path_separator(char **environ)
+char	**path_separator(char **envp)
 {
-	char **path_arr;
+	char **path_list;
 
-	while (*environ)
+	while (*envp)
 	{
-		if (!ft_strncmp(*environ, "PATH=", 5))
+		if (!ft_strncmp(*envp, "PATH=", 5))
 		{
-			*environ += 5;
-			path_arr = ft_split(*environ, ':');		//free
-			//while (*path_arr)
-			// {
-			// 	printf("%s\n", *path_arr);
-			// 	path_arr++;
-			// }
+			*envp += 5;
+			path_list = ft_split(*envp, ':');
 		}
-		environ++;
+		envp++;
 	}
-	return (path_arr);
+	return (path_list);
 }
 
-void	execve_with_path(char **path_list)
+void	execve_with_path(char **path_list, char **cmd_arg, char **envp)
 {
 	char	*tmp_path;
 	char	*final_path;
@@ -29,26 +24,18 @@ void	execve_with_path(char **path_list)
 	while (*path_list)
 	{
 		tmp_path = ft_strjoin(*path_list, "/");
-		final_path = ft_strjoin(tmp_path, "grep");
-		free(tmp_path);
-		printf("%s\n", final_path);
-		free(final_path);
-		path_list++;
+		final_path = ft_strjoin(tmp_path, cmd_arg[0]);
+		free_ptr(tmp_path);
+		if (access(final_path, X_OK) == -1 && errno == ENOENT)
+		{	
+			free_ptr(final_path);
+			path_list++;
+		}
+		else
+			break;
 	}
-}
-
-int		main()
-{
-	int		ret_val;
-	char *arr[] = {"grep", "mini", (char*)0};
-	// char *haystack[] = {"USR=NOPE", "PATH=:/usr/local/bin:/usr/bin:/bin", (char*)0};
-	// //printf("%d\n", count_chunk(haystack[1], ':'));
-	// execve_with_path(path_separator(haystack));
-	ret_val = execve(NULL, arr, 0);
-	if (ret_val == -1)
-	{
-		printf("ERRNO: %d\n", errno);
-		printf("ERROR MESSAGE: %s\n", strerror(errno));
-	}
-	return (0);
+	if (*path_list != NULL)		//해당 파일이 존재할때!
+		error_checker(strerror(errno), execve(final_path, cmd_arg, envp));
+	else						//해당 파일이 존재하지 않을 때!
+		error_checker(strerror(ENOENT), -1);
 }

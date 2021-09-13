@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arg_checker.c                                      :+:      :+:    :+:   */
+/*   arg_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:28:45 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/09 15:28:30 by sehhong          ###   ########.fr       */
+/*   Updated: 2021/09/13 09:16:12 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ static void	files_valid(char *infile, char *outfile)
 	}
 }
 
-void	arg_checker(t_storage *info, int argc, char **argv)
+void	arg_parser(t_storage *info, int argc, char **argv)
 {
 	if (argc != 5)
 	{
-		printf("%s\n", "Wrong number of arguments.\n");
+		printf("zsh: %s\n", "Wrong number of arguments.\n");
 		exit(EXIT_FAILURE);
 	}
 	files_valid(argv[INFILE_INDEX], argv[OUTFILE_INDEX]);

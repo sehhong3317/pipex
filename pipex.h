@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:29:08 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/10 11:08:37 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/13 09:26:33 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,26 @@ typedef struct	s_chunk_info
 	int	quote_flag;
 }				t_chunk_info;
 
-extern char **environ;
-
 char	**ft_split_cmd(char *str);
 
-void	arg_checker(t_storage *arg_arr, int argc, char **argv);
+void	arg_parser(t_storage *arg_arr, int argc, char **argv);
 
 void	error_checker(char *str, int return_value);
 
 void	fds_redirector_in_child1(t_storage *info);
 void	fds_redirector_in_child2(t_storage *info);
-void	cmd1_forker(t_storage *info, char **arr, char **environ);
-void	cmd2_forker(t_storage *info, char **arr, char **environ);
+void	cmd1_forker(t_storage *info, char **envp);
+void	cmd2_forker(t_storage *info, char **envp);
 
+void	*ft_memset(void *b, int c, size_t len);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_split(char *str, char c);
-char		*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
+void	free_ptr(char *ptr);
+
+char	**path_separator(char **envp);
+void	execve_with_path(char **path_list, char **cmd_arg, char **envp);
 
 #endif

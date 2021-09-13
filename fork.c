@@ -6,7 +6,7 @@
 /*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:27:40 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/09 15:32:50 by sehhong          ###   ########.fr       */
+/*   Updated: 2021/09/13 09:25:13 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	fds_redirector_in_child2(t_storage *info)
 	close(outfile_fd);
 }
 
-void	cmd1_forker(t_storage *info, char **arr, char **environ)
+void	cmd1_forker(t_storage *info, char **envp)
 {
 	info->pids[1] = fork();
 	error_checker("fork() has failed.\n", info->pids[1]);
@@ -46,13 +46,11 @@ void	cmd1_forker(t_storage *info, char **arr, char **environ)
 	{
 		close(info->pipe_fds[PIPE_READ]);
 		fds_redirector_in_child1(info);
-		execve("/bin/cat", arr, environ);
-		perror("1st execve() has failed.\n");
-		exit(EXIT_FAILURE);
+		execve_with_path(path_separator(envp), info->cmd1_arg, envp);
 	}
 }
 
-void	cmd2_forker(t_storage *info, char **arr, char **environ)
+void	cmd2_forker(t_storage *info, char **envp)
 {
 	info->pids[2] = fork();
 	error_checker("fork() has failed.\n", info->pids[2]);
@@ -60,8 +58,6 @@ void	cmd2_forker(t_storage *info, char **arr, char **environ)
 	{
 		close(info->pipe_fds[PIPE_WRITE]);
 		fds_redirector_in_child2(info);
-		execve("/usr/bin/grep", arr, environ);
-		perror("2nd execve() has failed.\n");
-		exit(EXIT_FAILURE);
+		execve_with_path(path_separator(envp), info->cmd2_arg, envp);
 	}
 }

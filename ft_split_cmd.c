@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_cmd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/26 15:02:50 by sehee             #+#    #+#             */
-/*   Updated: 2021/07/27 12:43:35 by sehee            ###   ########seoul.kr  */
+/*   Created: 2021/09/13 08:53:38 by sehhong           #+#    #+#             */
+/*   Updated: 2021/09/13 13:31:17 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "pipex.h"
 
@@ -133,26 +134,27 @@ char			**ft_split_cmd(char *str)
 	return (ret);
 }
 
-// int	main(int argc, char **argv)
-// {
-// 	int				i;
-// 	int				chunk_num;
-// 	char			**ret;
-// 	t_chunk_info	chunk_info;
+int	main(int argc, char **argv)
+{
+	int				i;
+	int				chunk_num;
+	char			**ret;
+	t_chunk_info	chunk_info;
 
-// 	if (argc == 2)
-// 	{
-// 		chunk_num = chunk_counter(argv[1], &chunk_info);
-// 		printf("%d\n", chunk_num);
-// 	}
-// 	else
-// 		return (0);
-// 	ret = ft_split_cmd(argv[1]);
-// 	i = 0;
-// 	while (i < chunk_num)
-// 	{
-// 		printf("%s\n", ret[i]);
-// 		i++;
-// 	}	
-// 	return (0);
-// }
+	if (argc == 2)
+	{
+		chunk_num = chunk_counter(argv[1], &chunk_info);
+		printf("%d\n", chunk_num);
+	}
+	else
+		return (0);
+	ret = ft_split_cmd(argv[1]);
+	i = 0;
+	while (i < chunk_num)
+	{
+		printf("%s\n", ret[i]);
+		i++;
+	}	
+	return (0);
+	
+}
