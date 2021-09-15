@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_checker.c                                    :+:      :+:    :+:   */
+/*   ft_strcopy_with_delimiter.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 14:32:47 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/15 09:56:01 by sehee            ###   ########seoul.kr  */
+/*   Created: 2021/09/15 09:41:51 by sehee             #+#    #+#             */
+/*   Updated: 2021/09/15 09:57:36 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	error_checker(char *str, int return_value)
+void	ft_strcopy_with_delimiter(char *dest, char *src, char c)
 {
-	if (return_value == -1)
-	{
-		printf("zsh: %s\n", str);
-		exit(EXIT_FAILURE);
-	}
+	while (*src != '\0' && *src != c)
+		*dest++ = *src++;
+	*dest = '\0';
 }

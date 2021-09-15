@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:29:08 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/13 09:26:33 by sehhong          ###   ########.fr       */
+/*   Updated: 2021/09/15 09:57:54 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,13 @@ typedef struct	s_storage
 
 typedef struct	s_chunk_info
 {
-	int	chunk_count;
-	int	str_count;
-	int	quote_flag;
+	int		chunk_count;
+	int		str_count;
+	int		quote_flag;
+	char	delimiter;
 }				t_chunk_info;
 
-char	**ft_split_cmd(char *str);
+char	**cmd_split(char *str);
 
 void	arg_parser(t_storage *arg_arr, int argc, char **argv);
 
@@ -67,7 +68,11 @@ char	**ft_split(char *str, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
-void	free_ptr(char *ptr);
+void	ft_ptr_free(char *ptr);
+void	ft_malloc_fail(char **str, int max);
+void	ft_strcopy_with_delimiter(char *dest, char *src, char c);
+
+
 
 char	**path_separator(char **envp);
 void	execve_with_path(char **path_list, char **cmd_arg, char **envp);

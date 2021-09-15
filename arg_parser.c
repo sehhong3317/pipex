@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   arg_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:28:45 by sehhong           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/09/14 10:15:54 by sehhong          ###   ########.fr       */
+=======
+/*   Updated: 2021/09/15 09:44:57 by sehee            ###   ########seoul.kr  */
+>>>>>>> 570102361ad70ba505ac5ac35ce5f6801c20fdd3
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +39,6 @@ void	arg_parser(t_storage *info, int argc, char **argv)
 	files_valid(argv[INFILE_INDEX], argv[OUTFILE_INDEX]);
 	info->infile_name = argv[INFILE_INDEX];
 	info->outfile_name = argv[OUTFILE_INDEX];
-	info->cmd1_arg = ft_split_cmd(argv[COMMAND1_INDEX]);
-	info->cmd2_arg = ft_split_cmd(argv[COMMAND2_INDEX]);
+	info->cmd1_arg = cmd_split(argv[COMMAND1_INDEX]);		//free
+	info->cmd2_arg = cmd_split(argv[COMMAND2_INDEX]);		//free
 }
