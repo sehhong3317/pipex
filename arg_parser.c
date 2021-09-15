@@ -6,7 +6,7 @@
 /*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:28:45 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/13 09:16:12 by sehhong          ###   ########.fr       */
+/*   Updated: 2021/09/14 10:15:54 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	files_valid(char *infile, char *outfile)
 {
-	if (((access(infile, R_OK)) == -1) ||
-					(((access(outfile, W_OK)) == -1) && errno == EACCES))
+	if (((access(infile, R_OK)) == -1)
+		|| (((access(outfile, W_OK)) == -1) && errno == EACCES))
 	{
 		if ((access(infile, R_OK)) == -1)
 			printf("zsh: %s: %s\n", strerror(errno), infile);
@@ -35,6 +35,6 @@ void	arg_parser(t_storage *info, int argc, char **argv)
 	files_valid(argv[INFILE_INDEX], argv[OUTFILE_INDEX]);
 	info->infile_name = argv[INFILE_INDEX];
 	info->outfile_name = argv[OUTFILE_INDEX];
-	info->cmd1_arg = ft_split_cmd(argv[COMMAND1_INDEX]);		//free
-	info->cmd2_arg = ft_split_cmd(argv[COMMAND2_INDEX]);		//free
+	info->cmd1_arg = ft_split_cmd(argv[COMMAND1_INDEX]);
+	info->cmd2_arg = ft_split_cmd(argv[COMMAND2_INDEX]);
 }
