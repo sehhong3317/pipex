@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 16:57:47 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/16 10:48:12 by sehhong          ###   ########.fr       */
+/*   Created: 2021/09/16 15:35:47 by sehhong           #+#    #+#             */
+/*   Updated: 2021/09/16 15:35:49 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "./../includes/pipex.h"
 
-int		main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
-	t_storage 	info;
+	t_storage	info;
 	pid_t		pid;
 	int			status;
 
@@ -35,5 +35,4 @@ int		main(int argc, char **argv, char **envp)
 		waitpid(pid, &status, 0);
 		exit_for_child(status);
 	}
-
 }

@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   exit_macros.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/04 17:54:51 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/13 08:40:34 by sehhong          ###   ########.fr       */
+/*   Created: 2021/09/16 09:25:29 by sehhong           #+#    #+#             */
+/*   Updated: 2021/09/16 16:30:19 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "./../includes/pipex.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+int	wstatus(int status)
 {
-	unsigned char	*ptr;
+	return (status & 0177);
+}
 
-	ptr = (unsigned char*)b;
-	while (len--)
-	{
-		*ptr = (unsigned char)c;
-		ptr++;
-	}
-	return (b);
+int	wifexited(int status)
+{
+	return (wstatus(status) == 0);
+}
+
+int	wexitstatus(int status)
+{
+	return ((wstatus(status) >> 8) & 0x000000ff);
+}
+
+int	wifsignaled(int status)
+{
+	return (wstatus(status) != 0177 && wstatus(status) != 0);
+}
+
+int	wtermsig(int status)
+{
+	return (wstatus(status));
 }

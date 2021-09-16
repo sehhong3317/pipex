@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_split.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 09:34:01 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/15 10:48:19 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/16 17:29:21 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "./../includes/pipex.h"
 
 static void	define_quote_flag(t_chunk_info *chunk_info, char c)
 {
@@ -28,11 +28,11 @@ static void	define_quote_flag(t_chunk_info *chunk_info, char c)
 		else if (chunk_info->quote_flag == 1)
 			chunk_info->str_count++;
 		else if (chunk_info->quote_flag == 2)
-			chunk_info->quote_flag = 0;		
+			chunk_info->quote_flag = 0;
 	}
 }
 
-static int		chunk_count(char *str, t_chunk_info *chunk_info)
+static int	chunk_count(char *str, t_chunk_info *chunk_info)
 {
 	ft_memset(chunk_info, 0, sizeof(*chunk_info));
 	while (*str)
@@ -47,7 +47,7 @@ static int		chunk_count(char *str, t_chunk_info *chunk_info)
 				chunk_info->str_count = 0;
 			}
 			else if (chunk_info->quote_flag)
-				chunk_info->str_count++;			
+				chunk_info->str_count++;
 		}
 		else
 			chunk_info->str_count++;
@@ -58,9 +58,10 @@ static int		chunk_count(char *str, t_chunk_info *chunk_info)
 	return (chunk_info->chunk_count);
 }
 
-static char	*str_input(t_chunk_info *info, char *str, int str_len, char **cmd_arg)
+static char	*str_input(t_chunk_info *info, char *str, int str_len, \
+	char **cmd_arg)
 {
-	cmd_arg[info->chunk_count] = (char*)malloc(sizeof(char) * (str_len + 1));
+	cmd_arg[info->chunk_count] = (char *)malloc(sizeof(char) * (str_len + 1));
 	if (!cmd_arg)
 	{
 		ft_malloc_fail(cmd_arg, info->chunk_count);
@@ -76,7 +77,8 @@ static char	*str_input(t_chunk_info *info, char *str, int str_len, char **cmd_ar
 	return (str);
 }
 
-static void	delimiter_based_str_input(char **cmd_arg, char *str, t_chunk_info *chunk_info)
+static void	delimiter_based_str_input(char **cmd_arg, char *str, t_chunk_info \
+	*chunk_info)
 {
 	int				i;
 
@@ -102,16 +104,16 @@ static void	delimiter_based_str_input(char **cmd_arg, char *str, t_chunk_info *c
 	}
 }
 
-char			**cmd_split(char *str)
+char	**cmd_split(char *str)
 {
-	char	**cmd_argv;
-	int		len_chunk;
-	t_chunk_info chunk_info;
+	char			**cmd_argv;
+	int				len_chunk;
+	t_chunk_info	chunk_info;
 
 	if (str == NULL)
 		return (NULL);
 	len_chunk = chunk_count(str, &chunk_info);
-	cmd_argv = (char**)malloc(sizeof(char*) * (len_chunk + 1));
+	cmd_argv = (char **)malloc(sizeof(char *) * (len_chunk + 1));
 	if (!cmd_argv)
 		return (NULL);
 	cmd_argv[len_chunk] = 0;

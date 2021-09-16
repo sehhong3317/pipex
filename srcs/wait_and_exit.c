@@ -6,11 +6,11 @@
 /*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 09:57:12 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/16 10:48:13 by sehhong          ###   ########.fr       */
+/*   Updated: 2021/09/16 17:29:38 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "./../includes/pipex.h"
 
 void	exit_for_child(int status)
 {
@@ -19,12 +19,12 @@ void	exit_for_child(int status)
 	else if (wifsignaled(status))
 		exit(wtermsig(status));
 	else
-		exit(EXIT_FAILURE);	
+		exit(EXIT_FAILURE);
 }
 
 void	wait_and_exit_for_grand_children(t_storage info)
 {
-	int 	status;
+	int		status;
 	int		cmd2_status;
 	pid_t	reaped_pid;
 

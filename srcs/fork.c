@@ -6,15 +6,15 @@
 /*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:27:40 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/16 09:21:53 by sehhong          ###   ########.fr       */
+/*   Updated: 2021/09/16 16:29:45 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "./../includes/pipex.h"
 
 void	fds_redirector_in_child1(t_storage *info)
 {
-	int infile_fd;
+	int	infile_fd;
 
 	infile_fd = open(info->infile_name, O_RDONLY);
 	error_checker("open() has failed.", infile_fd);
@@ -27,7 +27,7 @@ void	fds_redirector_in_child1(t_storage *info)
 
 void	fds_redirector_in_child2(t_storage *info)
 {
-	int outfile_fd;
+	int	outfile_fd;
 
 	error_checker("dup2() has failed.", dup2(info->pipe_fds[PIPE_READ], \
 																	STD_INPUT));

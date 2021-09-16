@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 14:32:47 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/15 09:56:01 by sehee            ###   ########seoul.kr  */
+/*   Created: 2021/09/16 17:29:52 by sehhong           #+#    #+#             */
+/*   Updated: 2021/09/16 17:30:07 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "./../includes/pipex.h"
 
 void	error_checker(char *str, int return_value)
 {

@@ -6,11 +6,11 @@
 /*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:28:45 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/16 10:50:36 by sehhong          ###   ########.fr       */
+/*   Updated: 2021/09/16 15:35:07 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "./../includes/pipex.h"
 
 static void	files_valid(char *infile, char *outfile)
 {
@@ -29,12 +29,12 @@ void	arg_parser(t_storage *info, int argc, char **argv)
 {
 	if (argc != 5)
 	{
-		printf("zsh: %s\n", "Wrong number of arguments.\n");
+		printf("zsh: %s", "Wrong number of arguments.\n");
 		exit(EXIT_FAILURE);
 	}
 	files_valid(argv[INFILE_INDEX], argv[OUTFILE_INDEX]);
 	info->infile_name = argv[INFILE_INDEX];
 	info->outfile_name = argv[OUTFILE_INDEX];
-	info->cmd1_arg = cmd_split(argv[COMMAND1_INDEX]);		//free
-	info->cmd2_arg = cmd_split(argv[COMMAND2_INDEX]);		//free
+	info->cmd1_arg = cmd_split(argv[COMMAND1_INDEX]);
+	info->cmd2_arg = cmd_split(argv[COMMAND2_INDEX]);
 }

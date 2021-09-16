@@ -1,8 +1,8 @@
-#include "pipex.h"
+#include "./../includes/pipex.h"
 
 char	**path_separator(char **envp)
 {
-	char **path_list;
+	char	**path_list;
 
 	while (*envp)
 	{
@@ -32,7 +32,7 @@ void	execve_with_path(char **path_list, char **cmd_arg, char **envp)
 			path_list++;
 		}
 		else
-			break;
+			break ;
 	}
 	if (*path_list != NULL)
 		error_checker(strerror(errno), execve(final_path, cmd_arg, envp));
