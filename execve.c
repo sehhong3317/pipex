@@ -34,9 +34,8 @@ void	execve_with_path(char **path_list, char **cmd_arg, char **envp)
 		else
 			break;
 	}
-	printf("%s\n", final_path);
-	if (*path_list != NULL)		//해당 파일이 존재할때!
+	if (*path_list != NULL)
 		error_checker(strerror(errno), execve(final_path, cmd_arg, envp));
-	else						//해당 파일이 존재하지 않을 때!
+	else
 		error_checker(strerror(ENOENT), -1);
 }

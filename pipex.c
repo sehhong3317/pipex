@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 16:57:47 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/15 10:44:50 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/16 10:48:12 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,26 @@
 
 int		main(int argc, char **argv, char **envp)
 {
-	t_storage info;
+	t_storage 	info;
+	pid_t		pid;
+	int			status;
 
 	arg_parser(&info, argc, argv);
-	info.pids[0] = fork();
-	error_checker("fork() has failed.", info.pids[0]);
-	if (info.pids[0] == 0)
+	pid = fork();
+	error_checker("fork() has failed.", pid);
+	if (pid == 0)
 	{
 		error_checker("pipe() has failed.", pipe(info.pipe_fds));
-		//손자 프로세스1 생성
 		cmd1_forker(&info, envp);
-		//손자 프로세스2 생성
 		cmd2_forker(&info, envp);
-		//자식 프로세스에서 파이프닫기
 		close(info.pipe_fds[PIPE_READ]);
 		close(info.pipe_fds[PIPE_WRITE]);
-		//자식 프로세스에서 wait로 두 손자 프로세스 기다리기
-		while (wait(&info.statuses[1]) != -1);
+		wait_and_exit_for_grand_children(info);
 	}
 	else
-		wait(&info.statuses[0]);
-	return (0);
+	{	
+		waitpid(pid, &status, 0);
+		exit_for_child(status);
+	}
+
 }

@@ -6,7 +6,7 @@
 /*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:27:40 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/13 09:25:13 by sehhong          ###   ########.fr       */
+/*   Updated: 2021/09/16 09:21:53 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	fds_redirector_in_child2(t_storage *info)
 
 void	cmd1_forker(t_storage *info, char **envp)
 {
-	info->pids[1] = fork();
-	error_checker("fork() has failed.\n", info->pids[1]);
-	if (info->pids[1] == 0)
+	info->pids[0] = fork();
+	error_checker("fork() has failed.\n", info->pids[0]);
+	if (info->pids[0] == 0)
 	{
 		close(info->pipe_fds[PIPE_READ]);
 		fds_redirector_in_child1(info);
@@ -52,9 +52,9 @@ void	cmd1_forker(t_storage *info, char **envp)
 
 void	cmd2_forker(t_storage *info, char **envp)
 {
-	info->pids[2] = fork();
-	error_checker("fork() has failed.\n", info->pids[2]);
-	if (info->pids[2] == 0)
+	info->pids[1] = fork();
+	error_checker("fork() has failed.\n", info->pids[1]);
+	if (info->pids[1] == 0)
 	{
 		close(info->pipe_fds[PIPE_WRITE]);
 		fds_redirector_in_child2(info);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:29:08 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/15 09:57:54 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/16 09:24:09 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ typedef struct	s_storage
 	char	**cmd1_arg;
 	char	**cmd2_arg;
 	int		pipe_fds[2];
-	pid_t	pids[3];
-	int		statuses[2];
+	pid_t	pids[2];
 }				t_storage;
 
 typedef struct	s_chunk_info
