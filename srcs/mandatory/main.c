@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 15:35:47 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/16 15:35:49 by sehhong          ###   ########.fr       */
+/*   Updated: 2021/09/25 16:11:11 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/pipex.h"
+#include "./../../includes/pipex.h"
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -18,16 +18,13 @@ int	main(int argc, char **argv, char **envp)
 	pid_t		pid;
 	int			status;
 
-	arg_parser(&info, argc, argv);
+	parse_arguments(&info, argc, argv);
 	pid = fork();
-	error_checker("fork() has failed.", pid);
+	print_error_and_exit("fork() has failed", NULL, pid);
 	if (pid == 0)
 	{
-		error_checker("pipe() has failed.", pipe(info.pipe_fds));
-		cmd1_forker(&info, envp);
-		cmd2_forker(&info, envp);
-		close(info.pipe_fds[PIPE_READ]);
-		close(info.pipe_fds[PIPE_WRITE]);
+		fork_1st_grandchild(&info, envp);
+		fork_2nd_grandchild(&info, envp);
 		wait_and_exit_for_grand_children(info);
 	}
 	else

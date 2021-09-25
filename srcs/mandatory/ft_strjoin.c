@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_macros.c                                      :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/16 09:25:29 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/24 21:48:00 by sehee            ###   ########seoul.kr  */
+/*   Created: 2021/09/24 17:04:22 by sehee             #+#    #+#             */
+/*   Updated: 2021/09/25 16:11:47 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/pipex.h"
 
-int	wstatus(int status)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	return (status & 0177);
-}
+	char	*ret;
+	size_t	s1_len;
+	size_t	s2_len;
 
-int	wifexited(int status)
-{
-	return (wstatus(status) == 0);
-}
-
-int	wexitstatus(int status)
-{
-	return ((wstatus(status) >> 8) & 0x000000ff);
-}
-
-int	wifsignaled(int status)
-{
-	return (wstatus(status) != 0177 && wstatus(status) != 0);
-}
-
-int	wtermsig(int status)
-{
-	return (wstatus(status));
+	if (!s1 && !s2)
+		return (NULL);
+	else if (!s1 || !s2)
+		return (!s1 ? ft_strdup(s2) : ft_strdup(s1));
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	ret = (char*)malloc(sizeof(char) * (s1_len + s2_len + 1));
+	if (!ret)
+		return (0);
+	ft_strncpy(ret, s1, s1_len);
+	ft_strncpy(ret + s1_len, s2, s2_len + 1);
+	return (ret);
 }

@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc_fail.c                                   :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/18 10:54:06 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/19 08:58:20 by sehee            ###   ########seoul.kr  */
+/*   Created: 2021/09/24 17:01:53 by sehee             #+#    #+#             */
+/*   Updated: 2021/09/24 21:50:31 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/pipex_bonus.h"
+#include "./../../includes/pipex.h"
 
-void	ft_malloc_fail(char **str, int max)
+char	*ft_strchr(const char *s, int c)
 {
-	int	i;
-
-	i = 0;
-	while (i < max)
+	if (s == NULL)
+		return (0);
+	while (*s)
 	{
-		free(str[i]);
-		i++;
+		if (*s == (unsigned char)c)
+			return ((char *)s);
+		s++;
 	}
-	free(str);
+	if (!c)
+		return ((char *)s);
+	return (0);
 }

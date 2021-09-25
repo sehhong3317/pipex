@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_macros.c                                      :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/16 09:25:29 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/24 21:48:00 by sehee            ###   ########seoul.kr  */
+/*   Created: 2021/09/24 17:04:58 by sehee             #+#    #+#             */
+/*   Updated: 2021/09/24 21:50:56 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/pipex.h"
 
-int	wstatus(int status)
+size_t	ft_strlen(const char *s)
 {
-	return (status & 0177);
-}
+	size_t	i;
 
-int	wifexited(int status)
-{
-	return (wstatus(status) == 0);
-}
-
-int	wexitstatus(int status)
-{
-	return ((wstatus(status) >> 8) & 0x000000ff);
-}
-
-int	wifsignaled(int status)
-{
-	return (wstatus(status) != 0177 && wstatus(status) != 0);
-}
-
-int	wtermsig(int status)
-{
-	return (wstatus(status));
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

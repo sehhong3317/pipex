@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execve_with_path_bonus.c                           :+:      :+:    :+:   */
+/*   execve_with_path.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/18 12:59:57 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/25 16:20:12 by sehee            ###   ########seoul.kr  */
+/*   Created: 2021/09/25 15:32:55 by sehee             #+#    #+#             */
+/*   Updated: 2021/09/25 16:20:03 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/pipex_bonus.h"
+#include "./../../includes/pipex.h"
 
 char	**split_path_env(char **envp)
 {
@@ -38,7 +38,7 @@ void	execve_with_path(char **array_of_path, char **cmd_arg, char **envp)
 		tmp_path = ft_strjoin(*array_of_path, "/");
 		final_path = ft_strjoin(tmp_path, cmd_arg[0]);
 		ft_ptr_free(tmp_path);
-		if (access(final_path, F_OK) == -1)
+		if (access(final_path, X_OK) == -1 && errno == ENOENT)
 		{	
 			ft_ptr_free(final_path);
 			array_of_path++;

@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arg_parser.c                                       :+:      :+:    :+:   */
+/*   parse_arguments.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:28:45 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/18 09:06:59 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/25 15:10:46 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/pipex.h"
+#include "./../../includes/pipex.h"
 
-static void	files_isvalid(char *infile, char *outfile)
+void	isvalid_files(char *infile, char *outfile)
 {
 	if (((access(infile, R_OK)) == -1)
 		|| (((access(outfile, W_OK)) == -1) && errno == EACCES))
 	{
 		if ((access(infile, R_OK)) == -1)
-			printf("zsh: %s: %s\n", strerror(errno), infile);
+			print_error(strerror(errno), infile);
 		if (((access(outfile, W_OK)) == -1) && errno == EACCES)
-			printf("zsh: %s: %s\n", strerror(errno), outfile);
+			print_error(strerror(errno), infile);
 		exit(EXIT_FAILURE);
 	}
 }
 
-void	arg_parser(t_storage *info, int argc, char **argv)
+void	parse_arguments(t_storage *info, int argc, char **argv)
 {
 	if (argc != 5)
-	{
-		printf("zsh: %s", "Wrong number of arguments.\n");
-		exit(EXIT_FAILURE);
-	}
-	files_isvalid(argv[INFILE_INDEX], argv[OUTFILE_INDEX]);
+		print_error_and_exit("Wrong number of arguments", NULL, -1);
+	isvalid_files(argv[INFILE_INDEX], argv[OUTFILE_INDEX]);
 	info->infile_name = argv[INFILE_INDEX];
 	info->outfile_name = argv[OUTFILE_INDEX];
-	info->cmd1_arg = cmd_split(argv[COMMAND1_INDEX]);
-	info->cmd2_arg = cmd_split(argv[COMMAND2_INDEX]);
+	info->cmd1_arg = split_cmd(argv[COMMAND1_INDEX]);
+	info->cmd2_arg = split_cmd(argv[COMMAND2_INDEX]);
 }

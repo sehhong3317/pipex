@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_checker.c                                    :+:      :+:    :+:   */
+/*   ft_malloc_fail_int.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/16 17:29:52 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/16 17:30:07 by sehhong          ###   ########.fr       */
+/*   Created: 2021/09/24 20:06:11 by sehee             #+#    #+#             */
+/*   Updated: 2021/09/24 21:49:48 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/pipex.h"
+#include "./../../includes/pipex.h"
 
-void	error_checker(char *str, int return_value)
+void	ft_malloc_fail_int(int **arr, int max)
 {
-	if (return_value == -1)
+	int	i;
+
+	i = 0;
+	while (i < max)
 	{
-		printf("zsh: %s\n", str);
-		exit(EXIT_FAILURE);
+		free(arr[i]);
+		i++;
 	}
+	free(arr);
 }

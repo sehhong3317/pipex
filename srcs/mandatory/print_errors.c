@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors_bonus.c                                     :+:      :+:    :+:   */
+/*   print_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/18 09:43:51 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/19 08:58:11 by sehee            ###   ########seoul.kr  */
+/*   Created: 2021/09/25 14:57:12 by sehee             #+#    #+#             */
+/*   Updated: 2021/09/25 16:18:29 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/pipex_bonus.h"
+#include "./../../includes/pipex.h"
 
-void	error_print(char *error_str, char *error_str2)
+void	print_error(char *error_str, char *error_str2)
 {
-	write(2, "zsh: ", 5);
-	write(2, error_str, ft_strlen(error_str));
+	ft_putstr_fd("zsh: ", 2);
+	ft_putstr_fd(error_str, 2);
 	if (error_str2 != NULL)
-		write(2, error_str2, ft_strlen(error_str2));
-	write(2, "\n", 1);
+		ft_putstr_fd(error_str2, 2);
+	ft_putstr_fd("\n", 2);
 }
 
-void	error_exit(char *error_str, char *error_str2, int return_value)
+void	print_error_and_exit(char *error_str, char *error_str2, int return_value)
 {
 	if (return_value == -1)
-		error_print(error_str, error_str2);
-	exit(EXIT_FAILURE);
+	{
+		print_error(error_str, error_str2);
+		exit(EXIT_FAILURE);
+	}
 }
 
-void	execve_error_exit(char *error_str, char *error_str2, int exit_status)
+void	print_execve_error_and_exit(char *error_str, char *error_str2, int exit_status)
 {
-	error_print(error_str, error_str2);
+	print_error(error_str, error_str2);
 	exit(exit_status);
 }

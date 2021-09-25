@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_split.c                                        :+:      :+:    :+:   */
+/*   split_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 09:34:01 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/16 17:29:21 by sehhong          ###   ########.fr       */
+/*   Updated: 2021/09/25 15:09:23 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/pipex.h"
+#include "./../../includes/pipex.h"
 
 static void	define_quote_flag(t_chunk_info *chunk_info, char c)
 {
@@ -64,9 +64,8 @@ static char	*str_input(t_chunk_info *info, char *str, int str_len, \
 	cmd_arg[info->chunk_count] = (char *)malloc(sizeof(char) * (str_len + 1));
 	if (!cmd_arg)
 	{
-		ft_malloc_fail(cmd_arg, info->chunk_count);
-		printf("Malloc() failed.\n");
-		exit(EXIT_FAILURE);
+		ft_malloc_fail_str(cmd_arg, info->chunk_count);
+		print_error_and_exit("malloc() has failed", NULL, -1);
 	}
 	ft_strcopy_with_delimiter(cmd_arg[info->chunk_count], str, info->delimiter);
 	info->chunk_count++;
@@ -104,7 +103,7 @@ static void	delimiter_based_str_input(char **cmd_arg, char *str, t_chunk_info \
 	}
 }
 
-char	**cmd_split(char *str)
+char	**split_cmd(char *str)
 {
 	char			**cmd_argv;
 	int				len_chunk;

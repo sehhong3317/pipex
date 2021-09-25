@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_macros.c                                      :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/16 09:25:29 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/24 21:48:00 by sehee            ###   ########seoul.kr  */
+/*   Created: 2021/09/18 13:03:19 by sehee             #+#    #+#             */
+/*   Updated: 2021/09/24 21:51:04 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/pipex.h"
 
-int	wstatus(int status)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	return (status & 0177);
-}
+	const unsigned char	*p1;
+	const unsigned char	*p2;
 
-int	wifexited(int status)
-{
-	return (wstatus(status) == 0);
-}
-
-int	wexitstatus(int status)
-{
-	return ((wstatus(status) >> 8) & 0x000000ff);
-}
-
-int	wifsignaled(int status)
-{
-	return (wstatus(status) != 0177 && wstatus(status) != 0);
-}
-
-int	wtermsig(int status)
-{
-	return (wstatus(status));
+	p1 = (const unsigned char *)s1;
+	p2 = (const unsigned char *)s2;
+	while (n)
+	{
+		if ((*p1 != *p2) || !*p1 || !*p2)
+			return (*p1 - *p2);
+		n--;
+		p1++;
+		p2++;
+	}
+	return (0);
 }

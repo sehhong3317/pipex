@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   wait_and_exit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 09:57:12 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/16 17:29:38 by sehhong          ###   ########.fr       */
+/*   Updated: 2021/09/24 21:48:24 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/pipex.h"
+#include "./../../includes/pipex.h"
 
 void	exit_for_child(int status)
 {
