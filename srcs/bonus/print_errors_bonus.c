@@ -6,7 +6,7 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 09:43:51 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/26 13:33:02 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/27 03:01:25 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ void	print_error(char *error_str, char *error_str2)
 	ft_putstr_fd("zsh: ", 2);
 	ft_putstr_fd(error_str, 2);
 	if (error_str2 != NULL)
+	{
+		ft_putstr_fd(": ", 2);
 		ft_putstr_fd(error_str2, 2);
+	}
 	ft_putstr_fd("\n", 2);
 }
 

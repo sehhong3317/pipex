@@ -6,7 +6,7 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:29:08 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/25 16:13:20 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/27 03:23:35 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define PIPE_WR_FD		1
 
 # include <unistd.h>
-# include <stdio.h>
 # include <sys/wait.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -53,7 +52,6 @@ typedef struct s_chunk_info
 }				t_chunk_info;
 
 /*parse_argument, split_cmd*/
-void	isvalid_files(char *infile, char *outfile);
 void	parse_arguments(t_storage *arg_arr, int argc, char **argv);
 char	**split_cmd(char *str);
 
@@ -92,6 +90,8 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_malloc_fail_str(char **str, int max);
 void	ft_malloc_fail_int(int **arr, int max);
 void	ft_putstr_fd(char *s, int fd);
+void	ft_putchar_fd(char c, int fd);
+int		ft_tolower(int c);
 void	ft_ptr_free(char *ptr);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);

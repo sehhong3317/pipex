@@ -6,24 +6,11 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 09:36:18 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/26 10:22:32 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/27 02:59:44 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
-
-void	isvalid_files(char *infile, char *outfile)
-{
-	if (((access(infile, R_OK)) == -1)
-		|| (((access(outfile, W_OK)) == -1) && errno == EACCES))
-	{
-		if ((access(infile, R_OK)) == -1)
-			print_error(strerror(errno), infile);
-		if (((access(outfile, W_OK)) == -1) && errno == EACCES)
-			print_error(strerror(errno), outfile);
-		exit(EXIT_FAILURE);
-	}
-}
 
 void	malloc_grandchild_pids(t_storage *info)
 {

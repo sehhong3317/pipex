@@ -6,7 +6,7 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 09:49:28 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/26 10:05:55 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/27 01:29:17 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	wifexited(int status)
 
 int	wexitstatus(int status)
 {
-	return ((wstatus(status) >> 8) & 0x000000ff);
+	return ((status >> 8) & 0x000000ff);
 }
 
 int	wifsignaled(int status)

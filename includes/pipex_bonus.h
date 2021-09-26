@@ -6,7 +6,7 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 08:28:44 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/26 10:36:17 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/27 03:23:41 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 # include <sys/uio.h>
 # include <limits.h>
 # include <string.h>
-# include <stdio.h>
 
 typedef struct s_storage
 {
@@ -59,7 +58,6 @@ typedef struct s_chunk_info
 void	parse_arguments_for_heredoc(int argc, char **argv, t_storage *info);
 void	parse_arguments_for_multi_pipes(t_storage *info, int argc, char **argv);
 void	parse_arguments(int argc, char **argv, t_storage *info);
-void	isvalid_files(char *infile, char *outfile);
 void	malloc_grandchild_pids(t_storage *info);
 void	malloc_pipe_fds(t_storage *info);
 void	malloc_cmd_args(t_storage *info, char **argv);
@@ -83,6 +81,8 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_malloc_fail_str(char **str, int max);
 void	ft_malloc_fail_int(int **arr, int max);
 void	ft_putstr_fd(char *s, int fd);
+void	ft_putchar_fd(char c, int fd);
+int		ft_tolower(int c);
 void	ft_ptr_free(char *ptr);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);

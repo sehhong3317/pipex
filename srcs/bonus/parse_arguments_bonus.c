@@ -6,7 +6,7 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 16:42:24 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/26 10:22:26 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/27 03:00:44 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	parse_arguments_for_multi_pipes(t_storage *info, int argc, char **argv)
 {
 	info->infile_name = argv[1];
 	info->outfile_name = argv[argc - 1];
-	isvalid_files(info->infile_name, info->outfile_name);
 	info->num_of_cmds = argc - 3;
 	malloc_grandchild_pids(info);
 	malloc_pipe_fds(info);

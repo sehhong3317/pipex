@@ -6,7 +6,7 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 17:16:49 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/26 10:22:46 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/27 03:04:27 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	redirect_fds_in_1st_grandchild(t_storage *info)
 {
 	int	infile_fd;
 
+	if ((access(info->infile_name, R_OK)) == -1)
+		print_error_and_exit(strerror(errno), info->infile_name, -1);
 	infile_fd = open(info->infile_name, O_RDONLY);
 	print_error_and_exit("open() has failed", NULL, infile_fd);
 	print_error_and_exit("dup2() has failed", NULL, dup2(infile_fd, STDIN_FD));
@@ -44,6 +46,8 @@ void	redirect_fds_in_last_grandchild(t_storage *info)
 	print_error_and_exit("dup2() has failed", NULL, \
 		dup2(info->pipe_fds[last_pipe_idx][PIPE_RD_FD], STDIN_FD));
 	close(info->pipe_fds[last_pipe_idx][PIPE_RD_FD]);
+	if (((access(info->outfile_name, W_OK)) == -1) && errno == EACCES)
+		print_error(strerror(errno), info->outfile_name);
 	if (info->heredoc_flag == 0)
 		outfile_fd = open(info->outfile_name, O_WRONLY | O_CREAT | O_TRUNC, \
 			0644);
