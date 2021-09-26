@@ -6,11 +6,11 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 16:56:55 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/25 15:12:08 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/26 10:22:52 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/pipex_bonus.h"
+#include "pipex_bonus.h"
 
 static void	define_quote_flag(t_chunk_info *chunk_info, char c)
 {

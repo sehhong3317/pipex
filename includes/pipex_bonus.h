@@ -6,19 +6,21 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 08:28:44 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/25 16:02:32 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/26 10:36:17 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 # define EXIT_SUCCESS	0
 # define EXIT_FAILURE	1
-# define PIPE_RD_FD	0
-# define PIPE_WR_FD	1
-# define STDIN_FD	0
-# define STDOUT_FD	1
+# define PIPE_RD_FD		0
+# define PIPE_WR_FD		1
+# define STDIN_FD		0
+# define STDOUT_FD		1
 # define ECMD_NOT_FND	127
-# define EPERMS_DND	126
+# define EPERMS_DND		126
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE	100
 # endif

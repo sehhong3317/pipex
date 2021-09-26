@@ -6,11 +6,11 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:28:45 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/25 15:10:46 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/26 10:28:36 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/pipex.h"
+#include "pipex.h"
 
 void	isvalid_files(char *infile, char *outfile)
 {

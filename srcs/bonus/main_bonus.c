@@ -6,11 +6,11 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 08:50:23 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/25 14:38:55 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/26 10:22:18 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/pipex_bonus.h"
+#include "pipex_bonus.h"
 
 int	main(int argc, char **argv, char **envp)
 {

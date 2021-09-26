@@ -6,11 +6,11 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 16:42:24 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/25 14:56:54 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/26 10:22:26 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/pipex_bonus.h"
+#include "pipex_bonus.h"
 
 void	parse_arguments_for_heredoc(int argc, char **argv, t_storage *info)
 {

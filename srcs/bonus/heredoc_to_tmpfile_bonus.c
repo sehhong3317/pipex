@@ -6,11 +6,11 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 16:50:53 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/24 20:20:58 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/26 10:22:12 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/pipex_bonus.h"
+#include "pipex_bonus.h"
 
 void	heredoc_to_tmpfile(t_storage *info)
 {

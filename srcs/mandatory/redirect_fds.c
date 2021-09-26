@@ -6,11 +6,11 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 15:14:18 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/25 15:30:01 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/26 13:34:12 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/pipex.h"
+#include "pipex.h"
 
 void	redirect_fds_in_1st_grandchild(t_storage *info)
 {

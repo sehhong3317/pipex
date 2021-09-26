@@ -6,11 +6,11 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:27:40 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/25 16:09:23 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/26 10:23:36 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/pipex.h"
+#include "pipex.h"
 
 void	fork_1st_grandchild(t_storage *info, char **envp)
 {

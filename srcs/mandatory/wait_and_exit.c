@@ -6,11 +6,11 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 09:57:12 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/24 21:48:24 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/26 10:29:07 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/pipex.h"
+#include "pipex.h"
 
 void	exit_for_child(int status)
 {

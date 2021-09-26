@@ -6,11 +6,11 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 17:00:32 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/24 19:51:38 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/26 10:21:59 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/pipex_bonus.h"
+#include "pipex_bonus.h"
 
 static int	nl_locater(char *str)
 {

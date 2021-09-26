@@ -6,11 +6,11 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 12:59:57 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/25 16:20:12 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/26 13:32:03 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/pipex_bonus.h"
+#include "pipex_bonus.h"
 
 char	**split_path_env(char **envp)
 {
@@ -46,7 +46,7 @@ void	execve_with_path(char **array_of_path, char **cmd_arg, char **envp)
 		else
 			break ;
 	}
-	if (!*array_of_path)	//주의!
+	if (!*array_of_path)
 		print_execve_error_and_exit("command not found: ", cmd_arg[0], \
 			ECMD_NOT_FND);
 	execve(final_path, cmd_arg, envp);

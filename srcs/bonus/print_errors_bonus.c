@@ -6,11 +6,11 @@
 /*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 09:43:51 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/25 16:23:48 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/26 13:33:02 by sehee            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/pipex_bonus.h"
+#include "pipex_bonus.h"
 
 void	print_error(char *error_str, char *error_str2)
 {
@@ -21,7 +21,8 @@ void	print_error(char *error_str, char *error_str2)
 	ft_putstr_fd("\n", 2);
 }
 
-void	print_error_and_exit(char *error_str, char *error_str2, int return_value)
+void	print_error_and_exit(char *error_str, char *error_str2, \
+	int return_value)
 {
 	if (return_value == -1)
 	{
@@ -30,7 +31,8 @@ void	print_error_and_exit(char *error_str, char *error_str2, int return_value)
 	}
 }
 
-void	print_execve_error_and_exit(char *error_str, char *error_str2, int exit_status)
+void	print_execve_error_and_exit(char *error_str, char *error_str2, \
+	int exit_status)
 {
 	print_error(error_str, error_str2);
 	exit(exit_status);
