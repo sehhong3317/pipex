@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 17:00:32 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/26 10:21:59 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/27 15:19:55 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,8 @@ static int	line_assigner(int nl_idx, char **left, char **line)
 	return (1);
 }
 
-int	get_next_line(int fd, char **line)
+static int	read_num_zero(char **left, int fd, char **line)
 {
-	ssize_t			read_num;
-	char			buff[BUFFER_SIZE + 1];
-	static char		*left[OPEN_MAX];
-
-	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0 || line == NULL)
-		return (-1);
-	read_num = read(fd, buff, BUFFER_SIZE);
-	while (read_num > 0)
-	{
-		buff[read_num] = '\0';
-		left[fd] = ft_strjoin(left[fd], buff);
-		if (ft_strchr(left[fd], '\n'))
-			return (line_assigner(nl_locater(left[fd]), &left[fd], line));
-		read_num = read(fd, buff, BUFFER_SIZE);
-	}
-	if (read_num < 0)
-		return (-1);
 	if (ft_strchr(left[fd], '\n'))
 		return (line_assigner(nl_locater(left[fd]), &left[fd], line));
 	if (left[fd] == NULL)
@@ -65,4 +48,30 @@ int	get_next_line(int fd, char **line)
 		*line = left[fd];
 	left[fd] = NULL;
 	return (0);
+}
+
+int	get_next_line(int fd, char **line)
+{
+	ssize_t			read_num;
+	char			buff[BUFFER_SIZE + 1];
+	static char		*left[OPEN_MAX];
+	static char		*backup;
+
+	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0 || line == NULL)
+		return (-1);
+	read_num = read(fd, buff, BUFFER_SIZE);
+	while (read_num > 0)
+	{
+		buff[read_num] = '\0';
+		if (backup)
+			free(backup);
+		backup = left[fd];
+		left[fd] = ft_strjoin(left[fd], buff);
+		if (ft_strchr(left[fd], '\n'))
+			return (line_assigner(nl_locater(left[fd]), &left[fd], line));
+		read_num = read(fd, buff, BUFFER_SIZE);
+	}
+	if (read_num < 0)
+		return (-1);
+	return (read_num_zero(left, fd, line));
 }

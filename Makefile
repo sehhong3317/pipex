@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+         #
+#    By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/16 11:21:01 by sehhong           #+#    #+#              #
-#    Updated: 2021/09/26 14:50:27 by sehee            ###   ########seoul.kr   #
+#    Updated: 2021/09/27 15:32:27 by sehhong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ else
 	OBJS = $(OBJS_M)
 endif
 
-all: $(NAME) $(OBJS)
+all: $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -o $@ -c $<
