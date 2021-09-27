@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:29:08 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/27 03:23:35 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/27 10:58:55 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	fork_2nd_grandchild(t_storage *info, char **envp);
 /*execve_with_path*/
 char	**split_path_env(char **envp);
 void	execve_with_path(char **path_list, char **cmd_arg, char **envp);
+void	execve_with_error_handling(char **array_of_path, char **cmd_arg, \
+	char **envp, char *final_path);
 
 /*exit_macros*/
 int		wstatus(int status);

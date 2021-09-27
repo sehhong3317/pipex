@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 08:28:44 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/27 03:23:41 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/27 10:59:18 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	PIPEX_BONUS_H
+#ifndef PIPEX_BONUS_H
 # define PIPEX_BONUS_H
 # define EXIT_SUCCESS	0
 # define EXIT_FAILURE	1
@@ -106,6 +106,8 @@ void	fork_last_grandchild(t_storage *info, char **envp);
 /*execve_with_path_bonus*/
 void	execve_with_path(char **array_of_path, char **cmd_arg, char **envp);
 char	**split_path_env(char **envp);
+void	execve_with_error_handling(char **array_of_path, char **cmd_arg, \
+	char **envp, char *final_path);
 
 /*exit_macros_bonus*/
 int		wstatus(int status);

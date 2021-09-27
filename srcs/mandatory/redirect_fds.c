@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_fds.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 15:14:18 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/27 02:55:58 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/27 10:28:40 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	redirect_fds_in_1st_grandchild(t_storage *info)
 	int	infile_fd;
 
 	if ((access(info->infile_name, R_OK)) == -1)
-			print_error_and_exit(strerror(errno), info->infile_name, -1);
+		print_error_and_exit(strerror(errno), info->infile_name, -1);
 	infile_fd = open(info->infile_name, O_RDONLY);
 	print_error_and_exit("open() has failed", NULL, infile_fd);
 	print_error_and_exit("dup2() has failed", NULL, dup2(infile_fd, STDIN_FD));

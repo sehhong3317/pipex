@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve_with_path_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 12:59:57 by sehee             #+#    #+#             */
-/*   Updated: 2021/09/27 01:31:20 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/27 10:58:27 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@ char	**split_path_env(char **envp)
 		envp++;
 	}
 	return (array_of_path);
+}
+
+void	execve_with_error_handling(char **array_of_path, char **cmd_arg, \
+	char **envp, char *final_path)
+{
+	if (!*array_of_path)
+		print_execve_error_and_exit("command not found", cmd_arg[0], \
+			ECMD_NOT_FND);
+	execve(final_path, cmd_arg, envp);
+	if (errno == EACCES)
+		print_execve_error_and_exit("permission denied", cmd_arg[0], \
+			EPERMS_DND);
+	else
+		print_execve_error_and_exit(strerror(errno), cmd_arg[0], EXIT_FAILURE);
 }
 
 void	execve_with_path(char **array_of_path, char **cmd_arg, char **envp)
@@ -51,13 +65,5 @@ void	execve_with_path(char **array_of_path, char **cmd_arg, char **envp)
 	}
 	else
 		final_path = cmd_arg[0];
-	if (!*array_of_path)
-		print_execve_error_and_exit("command not found", cmd_arg[0], \
-			ECMD_NOT_FND);
-	execve(final_path, cmd_arg, envp);
-	if (errno == EACCES)
-		print_execve_error_and_exit("permission denied", cmd_arg[0], \
-			EPERMS_DND);
-	else
-		print_execve_error_and_exit(strerror(errno), cmd_arg[0], EXIT_FAILURE);
+	execve_with_error_handling(array_of_path, cmd_arg, envp, final_path);
 }

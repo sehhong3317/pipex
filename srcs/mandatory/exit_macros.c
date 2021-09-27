@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_macros.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehee <sehee@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: sehhong <sehhong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 09:25:29 by sehhong           #+#    #+#             */
-/*   Updated: 2021/09/27 01:28:42 by sehee            ###   ########seoul.kr  */
+/*   Updated: 2021/09/27 10:28:20 by sehhong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,3 @@ int	wtermsig(int status)
 {
 	return (wstatus(status));
 }
-
-
